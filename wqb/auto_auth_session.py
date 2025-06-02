@@ -33,6 +33,8 @@ class AutoAuthSession(Session):
         self.max_tries = max(1, max_tries)
         self.delay_unexpected = max(0.0, delay_unexpected)
         self.logger = logger
+        self.kwargs =kwargs
+        # print(self.kwargs)
 
     def __repr__(
         self,
@@ -119,6 +121,7 @@ class AutoAuthSession(Session):
             delay_unexpected = self.delay_unexpected
         max_tries = max(1, max_tries)
         delay_unexpected = max(0.0, delay_unexpected)
+        kwargs = self.kwargs | kwargs
         for tries in range(1, 1 + max_tries):
             resp = super().request(method, url, *args, **kwargs)
             if expected(resp):
