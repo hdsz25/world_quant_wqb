@@ -7,7 +7,7 @@ import json
 
 home = expanduser("~")
 with open(home + "/.worldquant/config.json", "r") as f:
-    creds = json.load(f)
+    creds = json.loads(f)
     # 配置发送方信息（需替换为你的QQ邮箱和授权码）
     SENDER_EMAIL = creds["email"]
     SENDER_NAME = "WQB Auto Alert System"
